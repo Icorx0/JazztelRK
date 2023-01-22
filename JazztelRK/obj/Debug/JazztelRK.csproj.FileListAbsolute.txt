@@ -9,3 +9,14 @@ D:\weas\JazztelRK\JazztelRK\obj\Debug\JazztelRK.csproj.CoreCompileInputs.cache
 D:\weas\JazztelRK\JazztelRK\obj\Debug\JazztelRK.exe
 D:\weas\JazztelRK\JazztelRK\obj\Debug\JazztelRK.pdb
 D:\weas\JazztelRK\JazztelRK\obj\Debug\JazztelRK.JazztelPriceViewer.resources
+D:\Projects\JazztelRK\JazztelRK\bin\Debug\JazztelRK.exe.config
+D:\Projects\JazztelRK\JazztelRK\bin\Debug\JazztelRK.exe
+D:\Projects\JazztelRK\JazztelRK\obj\Debug\JazztelRK.csproj.AssemblyReference.cache
+D:\Projects\JazztelRK\JazztelRK\obj\Debug\JazztelRK.csproj.SuggestedBindingRedirects.cache
+D:\Projects\JazztelRK\JazztelRK\obj\Debug\JazztelRK.JazztelPriceViewer.resources
+D:\Projects\JazztelRK\JazztelRK\obj\Debug\JazztelRK.Properties.Resources.resources
+D:\Projects\JazztelRK\JazztelRK\obj\Debug\JazztelRK.csproj.GenerateResource.cache
+D:\Projects\JazztelRK\JazztelRK\obj\Debug\JazztelRK.csproj.CoreCompileInputs.cache
+D:\Projects\JazztelRK\JazztelRK\obj\Debug\JazztelRK.exe
+D:\Projects\JazztelRK\JazztelRK\obj\Debug\JazztelRK.pdb
+D:\Projects\JazztelRK\JazztelRK\bin\Debug\JazztelRK.pdb

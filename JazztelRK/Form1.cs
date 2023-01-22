@@ -21,7 +21,8 @@ namespace JazztelRK
 
         private Rectangle originalFormSize;
         private Dictionary<Control, OriginalProportion> originalSizes;
-        
+        private Boolean fontResizing = false;
+
         private class OriginalProportion
         {
             public Rectangle rectangle;
@@ -60,19 +61,26 @@ namespace JazztelRK
             control.Location = new Point((int)(originalSize.X * xFactor), (int)(originalSize.Y * yFactor));
 
             // changes the font
-            if (control.GetType() == typeof(Label))
+            if (control.GetType() == typeof(Label) && fontResizing)
             {
                 Label controlLabel = (Label)control;
                 Font originalFont = original.font;
                 // picks the smallest factor
                 float smallFactor = xFactor;
                 if (yFactor < smallFactor) smallFactor = yFactor;
-                controlLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", originalFont.Size * smallFactor, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+                float newSize = originalFont.Size * smallFactor;
+                controlLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", newSize, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             }
         }
 
         private void Form1_Resize(object sender, EventArgs e)
         {
+            resize();
+        }
+
+        private void resize()
+        { 
             float xFactor = (float)this.Width / (float)originalFormSize.Width;
             float yFactor = (float)this.Height / (float)originalFormSize.Height;
 
@@ -82,7 +90,7 @@ namespace JazztelRK
             }
         }
 
-        public void addControlSize(Control control)
+        private void addControlSize(Control control)
         {
             OriginalProportion recPro = new OriginalProportion();
             recPro.rectangle = new Rectangle(control.Location.X, control.Location.Y, control.Width, control.Height);
@@ -94,13 +102,19 @@ namespace JazztelRK
             originalSizes.Add(control, recPro);
         }
 
+        public void addControlToForm(Control control)
+        {
+            addControlSize(control);
+            resize();
+        }
+
         #endregion
         private int posY = 0;
         private void label1_Click(object sender, EventArgs e)
         {
             // Creates a label
             Label label = new Label();
-            this.panel2.Controls.Add(label);
+            this.Content.Controls.Add(label);
             label.AutoSize = true;
             label.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             posY += 40;
@@ -110,7 +124,37 @@ namespace JazztelRK
             label.Text = "Hola soy una fake etiqueta bonita";
             label.Click += new System.EventHandler(label1_Click);
 
-            addControlSize(label);
+            addControlToForm(label);
+        }
+
+        private void CheckBoxSpeed_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            // check internet if not checked yet
+            if (CheckBoxInternet.Checked == false)
+            {
+                CheckBoxInternet.Checked = true;
+            }
+
+            // uncheck other boxes
+            for (int i = 0; i < CheckBoxSpeed.Items.Count; i++)
+            {
+                if( e.Index == i ) { continue; }
+                CheckBoxSpeed.SetItemChecked(i, false);
+            }
+        }
+        
+
+        private void CheckBoxInternet_Click(object sender, EventArgs e)
+        { 
+            // if checked, uncheck all the other items
+            if(CheckBoxInternet.Checked == false)
+            {
+                for (int i = 0; i < CheckBoxSpeed.Items.Count; i++)
+                {
+                    CheckBoxSpeed.SetItemChecked(i, false);
+                }
+                CheckBoxInternet.Checked = false;
+            }
         }
     }
 }
